@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Физика задачи</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    @media screen and (max-width: 600px) {
+        .container {
+          width: calc(100% - 20px); /* Изменение ширины контейнера на 100% для мильных устройств */
+          padding: 10px; /* Уменьшение отступов для бее компактного внешнего вида */
+        }
+        input[type="number"] {
+          width: calc(100% - 10px); /* Изменение ширины инпута на 100% для мобиль устройств */
+        }
+        button {
+          width: calc(100% - 0px); /* Изменение ширины кнопки на 100% для мобильных устрой */
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Физика задачи</h1>
+    <label for="task">Номер задачи:</label>
+    <input type="number" id="task" min="1" max="20">
+
+    <label for="k">K:</label>
+    <input type="number" id="k">
+
+    <label for="m">M:</label>
+    <input type="number" id="m">
+
+    <label for="n">N:</label>
+    <input type="number" id="n">
+
+    <button onclick="solveTask()">Решить задачу</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // Сохраняем данные при попытке покинуть страницу
+    window.onbeforeunload = function() {
+        localStorage.setItem('taskValue', document.getElementById('task').value);
+        localStorage.setItem('kValue', document.getElementById('k').value);
+        localStorage.setItem('mValue', document.getElementById('m').value);
+        localStorage.setItem('nValue', document.getElementById('n').value);
+    };
+    
+    // Подстановка сохраненных значений при загрузке страницы
+    window.onload = function() {
+        document.getElementById('task').value = localStorage.getItem('taskValue') || '';
+        document.getElementById('k').value = localStorage.getItem('kValue') || '';
+        document.getElementById('m').value = localStorage.getItem('mValue') || '';
+        document.getElementById('n').value = localStorage.getItem('nValue') || '';
+    };
+
+
+    function solveTask() {
+      const task = parseInt(document.getElementById('task').value);
+      const k = parseInt(document.getElementById('k').value);
+      const m = parseInt(document.getElementById('m').value);
+      const n = parseInt(document.getElementById('n').value);
+
+      const result = document.getElementById('result');
+      result.innerHTML = '';
+
+      if (task >= 1 && task <= 20) {
+        switch (task) {
+          case 1:
+            task1(k, m, n);
+            break;
+          case 2:
+            task2(k, m, n);
+            break;
+          case 3:
+            task3(k, m, n);
+            break;
+          case 4:
+            task4(k, m, n);
+            break;
+          case 5:
+            task5(k, m, n);
+            break;
+          case 6:
+            task6(k, m, n);
+            break;
+          case 7:
+            task7(k, m, n);
+            break;
+          case 8:
+            task8(k, m, n);
+            break;
+          case 9:
+            task9(k, m, n);
+            break;
+          case 10:
+            task10(k, m, n);
+            break;
+          case 11:
+            task11(k, m, n);
+            break;
+          case 12:
+            task12(k, m, n);
+            break;
+          case 13:
+            task13(k, m, n);
+            break;
+          case 14:
+            task14(k, m, n);
+            break;
+          case 15:
+            task15(k, m, n);
+            break;
+          case 16:
+            task16(k, m, n);
+            break;
+          case 17:
+            task17(k, m, n);
+            break;
+          case 18:
+            task18(k, m, n);
+            break;
+          case 19:
+            task19(k, m, n);
+            break;
+          case 20:
+            task20(k, m, n);
+            break;
+        }
+      } else {
+        result.innerHTML = "Номер задачи введен неверно";
+      }
+    }
+
+    function task1(k, m, n) {
+      const q1 = n * Math.pow(10, -9);
+      const q2 = m * Math.pow(10, -9);
+      const r = k * Math.pow(10, -3);
+      const F = 8.99e9 * q1 * q2 / Math.pow(r, 2);
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        q1 = ${q1} Кл<br>
+        q2 = ${q2} Кл<br>
+        r = ${r} м<br>
+        Сила взаимодействия между двумя зарядами составляет ${F.toFixed(5)} Н
+      `;
+    }
+
+    // Добавьте остальные функции задач здесь. 
+    function task2(k, m, n) {
+      const q1 = m * Math.pow(10, -9);
+      const q2 = n * Math.pow(10, -9);
+      const F = (m + n) * Math.pow(10, 3);
+      const r = Math.sqrt(8.99e9 * q1 * q2 / (F * 81));
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        q1 = ${q1} Кл<br>
+        q2 = ${q2} Кл<br>
+        F = ${F} Н<br>
+        Расстояние между зарядами составляет ${r.toExponential(3)} м
+      `;
+    }
+
+    function task3(k, m, n) {
+      const k2 = 8.99e9; 
+      const q = n * Math.pow(10,-9); 
+      const r = (m + n) * Math.pow(10, -3); 
+      const epsilon_acetone = 19.5;
+      const E_vacuum = k2 * q / Math.pow(r, 2);
+      const V_vacuum = k2 * q / r;
+      const E_acetone = E_vacuum / epsilon_acetone;
+      const V_acetone = V_vacuum / epsilon_acetone;
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        k = ${k} Н*м^2/Кл^2<br>
+        q = ${q} Кл<br>
+        r = ${r} м<br>
+        epsilon_acetone = ${epsilon_acetone}<br>
+        E_vacuum = ${E_vacuum.toFixed(2)} Н/Кл<br>
+        V_vacuum = ${V_vacuum.toFixed(2)} В<br>
+        E_acetone = ${E_acetone.toFixed(2)} Н/Кл<br>
+        V_acetone = ${V_acetone.toFixed(2)} В<br>
+        В вакууме напряженность электрического поля составляет ${E_vacuum.toFixed(2)} Н/Кл, а потенциал - ${V_vacuum.toFixed(2)} В.<br>
+        В ацетоне напряженность электрического поля составляет ${E_acetone.toFixed(2)} Н/Кл, а потенциал - ${V_acetone.toFixed(2)} В.
+      `;
+    }
+
+    function task4(k, m, n) {
+      const epsilon_0 = 8.85e-12;
+      const epsilon_r = n;
+      const a = n / 100;
+      const d = m / 100;
+      const A = Math.pow(a, 2);
+      const C = epsilon_0 * epsilon_r * A / d;
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        epsilon_0 = ${epsilon_0} Ф/м<br>
+        epsilon_r = ${epsilon_r}<br>
+        a = ${a} м<br>
+        d = ${d} м<br>
+        A = ${A} м^2<br>
+        Результат расчета: электроемкость конденсатора составляет ${C.toExponential(2)} Ф.
+      `;
+    }
+
+    function task5(k, m, n) {
+      const epsilon_0 = 8.85e-12; 
+      const epsilon_r = n; 
+      const R = (m + n) * Math.pow(10, -3); 
+      const r = m * Math.pow(10, -3); 
+      const L = m * Math.pow(10, -2); 
+      const C = 2 * Math.PI * epsilon_0 * epsilon_r * L / Math.log(R / r); 
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        epsilon_0 = ${epsilon_0} Ф/м<br>
+        epsilon_r = ${epsilon_r}<br>
+        R = ${R} м<br>
+        r = ${r} м<br>
+        L = ${L} м<br>
+        Результат расчета: электроемкость цилиндрического конденсатора составляет ${C.toExponential(2)} Ф.
+      `;
+    }
+
+    function task6(k, m, n) {
+      const epsilon_0 = 8.85e-12;
+      const epsilon_r = n;
+      const r = m * Math.pow(10, -3);
+      const R = (n + m) * Math.pow(10, -3);
+      const C = 4 * Math.PI * epsilon_0 * epsilon_r * r * R / (R - r);
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        epsilon_0 = ${epsilon_0} Ф/м<br>
+        epsilon_r = ${epsilon_r}<br>
+        r = ${r} м<br>
+        R = ${R} м<br>
+        Результат расчета: электроемкость сферического конденсатора составляет ${C.toExponential(2)} Ф.
+      `;
+    }
+
+    function task7(k, m, n) {
+      const length = n + m;
+      const potential_difference = n;
+      const cross_sectional_area = m * Math.pow(10, -6);
+      const resistivity = 1.68 * Math.pow(10, -8);
+      const resistance = resistivity * length / cross_sectional_area;
+      const current = potential_difference / resistance;
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        l = ${length} м<br>
+        U = ${potential_difference} В<br>
+        S = ${cross_sectional_area} м^2<br>
+        rho = ${resistivity} Ом*м<br>
+        Результат расчета: сила тока в медном проводнике составляет ${current.toFixed(2)} А.
+      `;
+    }
+
+    function task8(k, m, n) {
+      const I = (n + m) * Math.pow(10, 3);
+      const t = n * Math.pow(10, -6);
+      const Q = I * t;
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        I = ${I} А<br>
+        t = ${t} с<br>
+        Результат расчета: заряд, который пройдет через провод, составляет ${Q.toFixed(2)} Кулон.
+      `;
+    }
+
+    function task9(k, m, n) {
+      const R1 = k;
+      const R2 = n;
+      const R3 = m;
+      const R4 = n + m;
+      const R5 = Math.abs(k - n) + m;
+      const R6 = k + m;
+      const R7 = n + k;
+      const R8 = Math.abs(m - n) + k;
+      const R345 = R3 + R4 + R5;
+      const R12 = R1 + R2;const R67 = R6 + R7;
+      const Req_parallel = 1 / ((1 / R345) + (1 / R12) + (1 / R67));
+      const Req_total = Req_parallel + R8;
+      const P_total = m * n;
+      const I_total = Math.sqrt(P_total / Req_total);
+      const U_parallel = I_total * Req_parallel;
+      const U8 = I_total * R8;
+      const I345 = U_parallel / R345;
+      const I12 = U_parallel / R12;
+      const I67 = U_parallel / R67;
+      const I1 = I12;
+      const I2 = I12;
+      const I5 = I345;
+      const I3 = I345;
+      const I4 = I345;
+      const I6 = I67;
+      const I7 = I67;
+      const I8 = I_total;
+      const U1 = I1 * R1;
+      const U2 = I2 * R2;
+      const U5 = I5 * R5;
+      const U3 = I3 * R3;
+      const U4 = I4 * R4;
+      const U6 = I6 * R6;
+      const U7 = I7 * R7;
+      const P_check = Math.pow(I_total, 2) * Req_total;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        R1 = ${R1} Ом<br>
+        R2 = ${R2} Ом<br>
+        R3 = ${R3} Ом<br>
+        R4 = ${R4} Ом<br>
+        R5 = ${R5} Ом<br>
+        R6 = ${R6} Ом<br>
+        R7 = ${R7} Ом<br>
+        R8 = ${R8} Ом<br>
+        Эквивалентное сопротивление цепи: ${Req_total.toFixed(3)} Ом<br>
+        Общий ток в цепи: ${I_total.toFixed(3)} A<br>
+        Напряжение на параллельных резисторах: ${U_parallel.toFixed(3)} В<br>
+        Напряжение на R8: ${U8.toFixed(3)} В<br>
+        Токи через каждый резистор: I1 = ${I1.toFixed(3)} A, I2 = ${I2.toFixed(3)} A, I3 = ${I3.toFixed(3)} A, I4 = ${I4.toFixed(3)} A, I5 = ${I5.toFixed(3)} A, I6 = ${I6.toFixed(3)} A, I7 = ${I7.toFixed(3)} A, I8 = ${I8.toFixed(3)} A<br>
+        Напряжения на каждом резисторе: U1 = ${U1.toFixed(3)} В, U2 = ${U2.toFixed(3)} В, U3 = ${U3.toFixed(3)} В, U4 = ${U4.toFixed(3)} В, U5 = ${U5.toFixed(3)} В, U6 = ${U6.toFixed(3)} В, U7 = ${U7.toFixed(3)} В, U8 = ${U8.toFixed(3)} В<br>
+        Проверка мощности: ${P_check === P_total}
+      `;
+    }
+
+    function task10(k, m, n) {
+      const C1 = k * Math.pow(10, -12);
+      const C2 = n * Math.pow(10, -12);
+      const C3 = m * Math.pow(10, -12);
+      const C4 = (n + m) * Math.pow(10, -12);
+      const C5 = (Math.abs(k - n) + m) * Math.pow(10, -12);
+      const C6 = (k + m) * Math.pow(10, -12);
+      const C7 = (n + k) * Math.pow(10, -12);
+      const C8 = (Math.abs(m - n) + k) * Math.pow(10, -12);
+      const C9 = (Math.abs(m - 20) + n) * Math.pow(10, -12);
+      const C10 = (Math.abs(50 - n)) * Math.pow(10, -12);
+      const C11 = (k + 10) * Math.pow(10, -12);
+      const C12 = (Math.abs(m - 30) + 15) * Math.pow(10, -12);
+      const C13 = (Math.abs(40 - n)) * Math.pow(10, -12);
+      const C2345 = 1 / (( 1 / C2) + ( 1 / C3) + ( 1 / C4) + ( 1 / C5));
+      const C678 = 1 / (( 1 / C6) + ( 1 / C7) + ( 1 / C8));
+      const C910 = 1 / (( 1 / C9) + ( 1 / C10));
+      const C1112 = 1 / (( 1 / C11) + ( 1 / C12));
+      const C111213 = C1112 + C13;
+      const C910111213 = 1 / (( 1 / C910) + ( 1 / C111213));
+      const Cap_parallel = C2345 + C678 + C910111213;
+      const Cap_total = 1 / (( 1 / C1) + ( 1 / Cap_parallel));
+      const U_total = m * n;
+      const q_total = Cap_total * U_total;
+      const U1 = q_total / C1;
+      const U_patallel = q_total / Cap_parallel;
+      const q_C2345 = C2345 * U_patallel;
+      const q_C678 = C678 * U_patallel;
+      const q_C910111213 = C910111213 * U_patallel;
+      const U2 = q_C2345 / C2;
+      const U3 = q_C2345 / C3;
+      const U4 = q_C2345 / C4;
+      const U5 = q_C2345 / C5;
+      const U6 = q_C678 / C6;
+      const U7 = q_C678 / C7;
+      const U8 = q_C678 / C8;
+      const U9 = q_C910111213 / C9;
+      const U10 = q_C910111213 / C10;
+      const U111213 = q_C910111213 / C111213;
+      const q_C1112 = C1112 * U111213;
+      const q_C13 = C13 * U111213;
+      const U11 = q_C1112 / C11;
+      const U12 = q_C1112 / C12;
+      const U13 = U111213;
+      const q_C1 = q_total;
+      const q_C2 = q_C2345;
+      const q_C3 = q_C2345;
+      const q_C4 = q_C2345;
+      const q_C5 = q_C2345;
+      const q_C6 = q_C678;
+      const q_C7 = q_C678;
+      const q_C8 = q_C678;
+      const q_C9= q_C910111213;
+      const q_C10 = q_C910111213;
+      const q_C11 = q_C1112;
+      const q_C12 = q_C1112;
+      const W_total = 0.5 * Cap_total * Math.pow(U_total, 2);
+      const W_C1 = 0.5 * C1 * Math.pow(U1, 2);
+      const W_C2 = 0.5 * C2 * Math.pow(U2, 2);
+      const W_C3 = 0.5 * C3 * Math.pow(U3, 2);
+      const W_C4 = 0.5 * C4 * Math.pow(U4, 2);
+      const W_C5 = 0.5 * C5 * Math.pow(U5, 2);
+      const W_C6 = 0.5 * C6 * Math.pow(U6, 2);
+      const W_C7 = 0.5 * C7 * Math.pow(U7, 2);
+      const W_C8 = 0.5 * C8 * Math.pow(U8, 2);
+      const W_C9 = 0.5 * C9 * Math.pow(U9, 2);
+      const W_C10 = 0.5 * C10 * Math.pow(U10, 2);
+      const W_C11 = 0.5 * C11 * Math.pow(U11, 2);
+      const W_C12 = 0.5 * C12 * Math.pow(U12, 2);
+      const W_C13 = 0.5 * C13 * Math.pow(U13, 2);
+      const W_check = W_C1 + W_C2 + W_C3 + W_C4 + W_C5 + W_C6 + W_C7 + W_C8 + W_C9 + W_C10 + W_C11 + W_C12 + W_C13;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        C1 = ${C1} Ф<br>
+        C2 = ${C2} Ф<br>
+        C3 = ${C3} Ф<br>
+        C4 = ${C4} Ф<br>
+        C5 = ${C5} Ф<br>
+        C6 = ${C6} Ф<br>
+        C7 = ${C7} Ф<br>
+        C8 = ${C8} Ф<br>
+        C9 = ${C9} Ф<br>
+        C10 = ${C10} Ф<br>
+        C11 = ${C11} Ф<br>
+        C12 = ${C12} Ф<br>
+        C13 = ${C13} Ф<br>
+        Эквивалентная ёмкость: ${Cap_total} Ф<br>
+        Напряжение: ${U_total} В<br>
+        Заряд: ${q_total} Кл<br>
+        Напряжение на каждом конденсаторе: ${U1} В, ${U2} В, ${U3} В, ${U4} В, ${U5} В, ${U6} В, ${U7} В, ${U8} В, ${U9} В, ${U10} В, ${U11} В, ${U12} В, ${U13} В,<br>
+        Заряд на каждом конденсаторе: ${q_C1} Кл, ${q_C2} Кл, ${q_C3} Кл, ${q_C4} Кл, ${q_C5} Кл, ${q_C6} Кл, ${q_C7} Кл, ${q_C8} Кл, ${q_C9} Кл, ${q_C10} Кл, ${q_C11} Кл, ${q_C12} Кл, ${q_C13} Кл<br>
+        Баланс энергий: ${W_check === W_total}
+      `;
+    }
+
+    function task11(k, m, n) {
+      const l = n * Math.pow(10, 3);
+      const S = m;
+      const Poten_diff = k + n;
+      const rho_Cu = 0.017;
+      const rho_Al = 0.0282;
+      const R_Cu = rho_Cu * l / S;
+      const R_Al = rho_Al * l / S;
+      const G_Cu = 1 / R_Cu;
+      const G_Al = 1 / R_Al;
+      const I_Cu = Poten_diff / R_Cu;
+      const I_Al = Poten_diff / R_Al;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        l = ${l} м<br>
+        S = ${S} мм^2<br>
+        U = ${Poten_diff} В<br>
+        Сопротивление медного провода: ${R_Cu.toFixed(2)} Ом<br>
+        Сопротивление алюминиевого провода: ${R_Al.toFixed(2)} Ом<br>
+        Проводимость медного провода: ${G_Cu.toFixed(2)} См<br>
+        Проводимость алюминиевого провода: ${G_Al.toFixed(2)} См<br>
+        Сила тока в медном проводе: ${I_Cu.toFixed(2)} А<br>
+        Сила тока в алюминиевом проводе: ${I_Al.toFixed(2)} А
+      `;
+    }
+
+    function task12(k, m, n) {
+      const R1 = n;
+      const R2 = k;
+      const R3 = m;
+      const E = n;
+      const r = Math.abs(n - k) * 1e-3;
+      const R = 1 / ((1 / R1) + (1 / R2) + (1 / R3));
+      const I = E / (R + r);
+      const I_short_circuit = E / r;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        R1 = ${R1} Ом<br>
+        R2 = ${R2} Ом<br>
+        R3 = ${R3} Ом<br>
+        E = ${E} В<br>
+        r = ${r} Ом<br>
+        Ток в цепи: ${I.toFixed(2)} А<br>
+        Ток короткого замыкания: ${I_short_circuit.toFixed(2)} А
+      `;
+    }
+
+    function task13(k, m, n) {
+      const U = n * Math.pow(10, 3);
+      const I = m;
+      const efficiency = (k + n) / 100;
+      const A = U * I * 2 * 3600;
+      const Q = A * efficiency;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        U = ${U} кВ<br>
+        I = ${I} А<br>
+        efficiency = ${efficiency}<br>
+        Количество теплоты, которое поступит в помещение от электрообогревателя за 2 часа, составляет ${Q} Дж.
+      `;
+    }
+
+    function task14(k, m, n) {
+      const I = n;
+      const r = m * Math.pow(10, -2);
+      const mu0 = 4 * Math.PI * 1e-7;
+      const H = I / (2 * Math.PI * r);
+      const B = mu0 * H;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        I = ${I} А<br>
+        r = ${r} м<br>
+        mu0 = ${mu0} Гн/м<br>
+        Напряженность магнитного поля на расстоянии ${r} м от проводника: ${H.toFixed(2)} А/м<br>
+        Магнитная индукция на расстоянии ${r} м от проводника: ${B.toExponential(2)} Тл
+      `;
+    }
+
+    function task15(k, m, n) {
+      const t = m * Math.pow(10, -6);
+      const E = n * Math.pow(10, 3);
+      const B = k * Math.pow(10, -3);
+      const h = 2 * Math.PI * E * t / B;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        t = ${t} с<br>
+        E = ${E} В<br>
+        B = ${B} Тл<br>
+        Постоянный шаг спиральной траектории заряда составляет ${h.toFixed(2)} м.
+      `;
+    }
+
+    function task16(k, m, n) {
+      const delta_F = n;
+      const t = m * Math.pow(10, -3);
+      const flux_rate = delta_F / t;
+      const EMF = - flux_rate;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        delta_F = ${delta_F} Вб<br>
+        t = ${t} с<br>
+        Скорость изменения магнитного потока: ${flux_rate.toFixed(2)} Вб/с<br>
+        ЭДС индукции на контуре: ${EMF.toFixed(2)} В
+      `;
+    }
+
+    function task17(k, m, n) {
+      const B = k * Math.pow(10, -6);
+      const S = n * Math.pow(10, -6);
+      const angle = Math.PI * (m + n) / 180;
+      const flux = B * S * Math.cos(angle);
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        B = ${B} Тл<br>
+        S = ${S} м^2<br>
+        angle = ${angle} рад<br>
+        Магнитный поток, пронизывающий контур, составляет ${flux.toExponential(2)} Вб.
+      `;
+    }
+
+    function task18(k, m, n) {
+      const E = 200 + n;
+      const r_gen = m;
+      const r_heat = k + m;
+      const tariff = 2 + n / 100;
+      const I = E / (r_gen + r_heat);
+      const P = Math.pow(I, 2) * r_heat;
+      const Q = P * 1;
+      const hours_per_day = 8.5;
+      const days = 30;
+      const energy = P * hours_per_day * days / 1000;
+      const cost = energy * tariff;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        E = ${E} В<br>
+        r_gen = ${r_gen} Ом<br>
+        r_heat = ${r_heat} Ом<br>
+        tariff = ${tariff} руб/кВт*ч<br>
+        Количество теплоты, выделяемой нагревателем в 1 с: ${Q.toFixed(2)} Дж<br>
+        Стоимость переданной нагревателю энергии за 30 дней работы: ${cost.toFixed(2)} руб.
+      `;
+    }
+
+    function task19(k, m, n) {
+      const l = n * Math.pow(10, 3);
+      const price_sup = k * m * Math.pow(10, 3);
+      const num_wir = m;
+      const S = n * m;
+      const copper_cost = k * m * 10;
+      const copper_density = 8890;
+      const other_expenses = k * m * n * 1000;
+      const num_sup = l / 200;
+      const V = S * Math.pow(10, -6) * l;
+      //const m = V * copper_density * num_wir / 1000;
+      const sups_price = num_sup * price_sup;
+      const cabel_cast = m * copper_cost;
+      const total_cost = sups_price + cabel_cast + other_expenses;
+
+      const result = document.getElementById('result');
+      result.innerHTML = `
+        l = ${l} м<br>
+        price_sup = ${price_sup} руб.<br>
+        num_wir = ${num_wir}<br>
+        S = ${S} мм^2<br>
+        copper_cost = ${copper_cost} руб/кг<br>
+        copper_density = ${copper_density} г/см^3<br>
+        other_expenses = ${other_expenses} руб.<br>
+        Стоимость постройки ЛЭП составляет ${total_cost.toFixed(2)} рублей
+      `;
+    }
+
+    function task20(k, m, n) {
+        const q = n * Math.pow(10, -6);
+        const H = m * Math.pow(10, -3);
+        const v = k * 1000 / 3600;
+        const a = Math.PI * 45 / 180;
+        const mu0 = 4 * Math.PI * 1e-7;
+        const B = mu0 * H;
+        const F_L = Math.abs(q) * v * B * Math.sin(a);
+        const I = q / (m * 60);
+        const l = (n + k);
+        const F_A = I * l * B * Math.sin(a);
+  
+        const result = document.getElementById('result');
+        result.innerHTML = `
+          q = ${q} Кл<br>
+          H = ${H} А/м<br>
+          v = ${v} м/с<br>
+          a = ${a} рад<br>
+          mu0 = ${mu0} Гн/м<br>
+          B = ${B} Тл<br>
+          Сила Лоренца: ${F_L.toExponential(3)} Н<br>
+          Сила Ампера: ${F_A.toExponential(3)} Н`
+        ;
+      }
+  
+      // ... (остальные функции)
+  
+      //function handleFormSubmit(event) {
+        //event.preventDefault();
+        //const taskNumber = parseInt(document.getElementById('taskNumber').value);
+        //const k = parseInt(document.getElementById('k').value);
+        //const m = parseInt(document.getElementById('m').value);
+        //const n = parseInt(document.getElementById('n').value);
+  
+        //switch (taskNumber) {
+         // case 1:
+         //   task1(k, m, n);
+        //   break;
+        //  case 2:
+        //    task2(k, m, n);
+        //    break;
+        //  // ... (другие задачи)
+        //  case 20:
+        //    task20(k, m, n);
+        //    break;
+        //  default:
+        //    alert('Неверный номер задачи');
+        //}
+      //}
+  
+      // HTML код
+      //const form = document.createElement('form');
+      //form.addEventListener('submit', handleFormSubmit);
+      //form.innerHTML = `
+       //<label for="taskNumber">Номер задачи:</label>
+       // <input type="number" id="taskNumber" name="taskNumber" required><br><br>
+  
+       // <label for="k">K:</label>
+       // <input type="number" id="k" name="k" required><br><br>
+  
+        //<label for="m">M:</label>
+        //<input type="number" id="m" name="m" required><br><br>
+  // <label for="n">N:</label>
+        //<input type="number" id="n" name="n" required><br><br>
+  
+       //<button type="submit">Решить</button>`
+      //;
+  
+      //const result = document.createElement('div');
+      //result.id = 'result';
+  
+      //document.body.appendChild(form);
+      //document.body.appendChild(result)
+
+</script>
